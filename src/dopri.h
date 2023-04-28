@@ -140,6 +140,7 @@ typedef struct {
   double step_size_max;
   double step_size_initial;
   size_t step_max_n; // max number of steps (100000)
+  bool step_size_min_allow;
   double step_beta;
   double step_constant; // internal
 
@@ -205,7 +206,7 @@ void dopri_print_eval(dopri_data *obj, double t, double *y);
 void dopri_callback(dopri_data *obj, double t, double h, double *y);
 
 // Helper
-size_t get_current_problem_size_dde();
+size_t get_current_problem_size_dde(void);
 double square(double x);
 size_t min_size(size_t a, size_t b);
 

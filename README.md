@@ -2,9 +2,8 @@
 
 <!-- badges: start -->
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Travis-CI Build Status](https://travis-ci.org/mrc-ide/dde.svg?branch=master)](https://travis-ci.org/mrc-ide/dde)
-[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/96hrpw9ubhhun566?svg=true)](https://ci.appveyor.com/project/richfitz/dde)
-[![codecov.io](https://codecov.io/github/mrc-ide/dde/coverage.svg?branch=master)](https://codecov.io/github/mrc-ide/dde?branch=master)
+[![R-CMD-check](https://github.com/mrc-ide/dde/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mrc-ide/dde/actions/workflows/R-CMD-check.yaml)
+[![codecov.io](https://codecov.io/github/mrc-ide/dde/coverage.svg?branch=master)](https://app.codecov.io/github/mrc-ide/dde?branch=master)
 [![](http://www.r-pkg.org/badges/version/dde)](https://cran.r-project.org/package=dde)
 <!-- badges: end -->
 
@@ -22,7 +21,7 @@ This is an alternative approach to fitting delay DDE models to using deSolve.  I
 
 By using the dense output, the solution can be computed at any time point the solver has passed to the same accuracy as the solution itself.  This sidesteps the interpolation problem at the cost of a bit more book-keeping.
 
-To store the history without using ever-growing (or just huge) amounts of memory, `dde` uses a [ring buffer](https://github.com/richfitz/ring) to hold the history over time.  This means that the memory required to store the solution does not grow as the total integration length increases (though you still need to pick an amount of memory that scales with the maximum number of steps that span your longest lag at any point in the integration).
+To store the history without using ever-growing (or just huge) amounts of memory, `dde` uses a [ring buffer](https://github.com/mrc-ide/ring) to hold the history over time.  This means that the memory required to store the solution does not grow as the total integration length increases (though you still need to pick an amount of memory that scales with the maximum number of steps that span your longest lag at any point in the integration).
 
 These solvers are suitable only for non-stiff problems.
 
