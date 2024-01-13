@@ -1,6 +1,6 @@
 Package: dde
 Title: Solve Delay Differential Equations
-Version: 1.0.4
+Version: 1.0.5
 Authors@R: c(person("Rich", "FitzJohn", role = c("aut", "cre"),
                     email = "rich.fitzjohn@gmail.com"),
              person("Wes", "Hinsley", role = "aut"),
@@ -24,10 +24,10 @@ VignetteBuilder: knitr
 Encoding: UTF-8
 Language: en-GB
 NeedsCompilation: yes
-Packaged: 2023-04-28 09:16:09 UTC; rfitzjoh
+Packaged: 2024-01-13 08:16:09 UTC; rfitzjoh
 Author: Rich FitzJohn [aut, cre],
   Wes Hinsley [aut],
   Imperial College of Science, Technology and Medicine [cph]
 Maintainer: Rich FitzJohn <rich.fitzjohn@gmail.com>
 Repository: CRAN
-Date/Publication: 2023-04-28 09:50:02 UTC
+Date/Publication: 2024-01-13 08:40:02 UTC

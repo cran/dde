@@ -12,7 +12,7 @@
 
 <meta name="author" content="Rich FitzJohn" />
 
-<meta name="date" content="2023-04-28" />
+<meta name="date" content="2024-01-13" />
 
 <title>dde</title>
 
@@ -326,7 +326,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">dde</h1>
 <h4 class="author">Rich FitzJohn</h4>
-<h4 class="date">2023-04-28</h4>
+<h4 class="date">2024-01-13</h4>
 
 
 
@@ -511,7 +511,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <a class="sourceLine" id="cb19-26" title="26">    lag_inf <span class="op">-</span><span class="st"> </span>(b <span class="op">+</span><span class="st"> </span>sigma) <span class="op">*</span><span class="st"> </span>I,</a>
 <a class="sourceLine" id="cb19-27" title="27">    sigma <span class="op">*</span><span class="st"> </span>I <span class="op">-</span><span class="st"> </span>b <span class="op">*</span><span class="st"> </span>R <span class="op">-</span><span class="st"> </span>delta <span class="op">*</span><span class="st"> </span>R)</a>
 <a class="sourceLine" id="cb19-28" title="28">}</a>
-<a class="sourceLine" id="cb19-29" title="29"><span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x55b55c130fc8</span><span class="op">&gt;</span></a></code></pre></div>
+<a class="sourceLine" id="cb19-29" title="29"><span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x56094fea27b0</span><span class="op">&gt;</span></a></code></pre></div>
 <p>The implementation using <code>deSolve</code> looks very similar:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">seir_deSolve &lt;-<span class="st"> </span><span class="cf">function</span>(t, y, parms) {</a>
 <a class="sourceLine" id="cb20-2" title="2">  b &lt;-<span class="st"> </span><span class="fl">0.1</span></a>
@@ -574,8 +574,8 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <a class="sourceLine" id="cb23-5" title="5">tR</a></code></pre></div>
 <pre><code>## Unit: milliseconds
 ##     expr       min        lq      mean    median        uq       max neval
-##  deSolve 13.145607 13.587605 14.288511 13.895209 15.131736 16.935816    30
-##      dde  5.261153  5.450561  5.809869  5.546926  5.805716  7.172738    30</code></pre>
+##  deSolve 12.801077 13.181375 13.697530 13.730899 14.141395 14.810814    30
+##      dde  5.385439  5.521854  5.903006  5.595732  5.782812  8.986672    30</code></pre>
 </div>
 <div id="models-implemented-in-c" class="section level3">
 <h3>Models implemented in C</h3>
@@ -676,8 +676,8 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <a class="sourceLine" id="cb31-6" title="6">tC</a></code></pre></div>
 <pre><code>## Unit: microseconds
 ##     expr     min       lq     mean   median       uq      max neval
-##  deSolve 373.976 386.1510 401.9069 396.9875 405.5385  505.070   100
-##      dde 744.788 762.5915 797.6977 777.2545 799.1690 2221.356   100</code></pre>
+##  deSolve 381.254 393.2690 416.4968 400.4995 416.8165 1586.562   100
+##      dde 736.923 746.7015 762.0366 754.3550 776.9675  827.341   100</code></pre>
 <p>The difference in speed will tend to increase as the models become larger (in terms of numbers of equations and parameters). On the other hand, constructing large models in C can be a hassle (but see <a href="https://mrc-ide.github.io/odin/">odin</a> for a possible solution).</p>
 <p>You can extract a little more performance by tweaking options to <code>dde::dopri</code>; in particular, adding <code>return_minimal = TRUE</code> will avoid transposing the output, binding the times on, and (if given) avoiding binding output variables. These costs may be nontrivial with bigger models, though the cost of running a larger model will likely be larger still. Previous version of R suffered from a large cost of looking up the address of the compiled function (Windows may still take longer to do this than macOS/Linux). In that case, use <code>getNativeSymbolInfo(&quot;seir&quot;)</code> and pass that through to <code>dopri</code> as the <code>func</code> argument.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">ptr &lt;-<span class="st"> </span><span class="kw">getNativeSymbolInfo</span>(<span class="st">&quot;seir&quot;</span>)</a>
@@ -691,9 +691,9 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <a class="sourceLine" id="cb33-9" title="9">tC2</a></code></pre></div>
 <pre><code>## Unit: microseconds
 ##     expr     min       lq     mean   median       uq      max neval
-##  deSolve 372.033 379.8430 406.7776 390.5850 397.8055 1681.701   100
-##      dde 744.539 752.2460 762.6123 759.6975 765.6120  825.181   100
-##     dde2 718.351 723.6345 729.3656 726.4325 731.1480  792.180   100</code></pre>
+##  deSolve 381.755 386.4155 414.1262 398.9375 405.4515 1839.921   100
+##      dde 735.860 741.0715 754.3406 749.8005 756.1355 1018.357   100
+##     dde2 708.080 712.9860 718.2818 716.3965 721.7640  759.269   100</code></pre>
 </div>
 </div>
 
