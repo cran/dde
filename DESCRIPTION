@@ -1,6 +1,6 @@
 Package: dde
 Title: Solve Delay Differential Equations
-Version: 1.0.5
+Version: 1.0.7
 Authors@R: c(person("Rich", "FitzJohn", role = c("aut", "cre"),
                     email = "rich.fitzjohn@gmail.com"),
              person("Wes", "Hinsley", role = "aut"),
@@ -17,17 +17,17 @@ License: MIT + file LICENSE
 URL: https://github.com/mrc-ide/dde
 BugReports: https://github.com/mrc-ide/dde/issues
 Depends: R (>= 3.1.0)
-LinkingTo: ring (>= 1.0.0)
+LinkingTo: ring (>= 1.0.6)
 Suggests: deSolve, knitr, microbenchmark, rmarkdown, testthat
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 Encoding: UTF-8
 Language: en-GB
 NeedsCompilation: yes
-Packaged: 2024-01-13 08:16:09 UTC; rfitzjoh
+Packaged: 2024-09-23 08:52:27 UTC; rfitzjoh
 Author: Rich FitzJohn [aut, cre],
   Wes Hinsley [aut],
   Imperial College of Science, Technology and Medicine [cph]
 Maintainer: Rich FitzJohn <rich.fitzjohn@gmail.com>
 Repository: CRAN
-Date/Publication: 2024-01-13 08:40:02 UTC
+Date/Publication: 2024-09-23 09:30:02 UTC
